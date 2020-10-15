@@ -4,34 +4,23 @@
 谷粒商城
 
 #### 软件架构
-软件架构说明
+
+分布式基础概念
+微服务、注册中心、配置中心、远程调用、Feign网关
 
 
-#### 安装教程
+基础开发
+SpringBoot2.x、SpringClound、Mybatis-Plus、Vue组件化、阿里云对象存储
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+环境
+Vagrant、Linux、Docker、MySQL、Redis、逆向工程&人人开源
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+开发规范
+数据校验JSR303、全局异常处理、全局统一返回、全局跨域处理
+枚举状态、业务状态码、VO与TO与PO划分、逻辑删除
+Lombok:@Data、@Slf4j
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+
