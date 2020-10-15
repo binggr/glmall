@@ -6,7 +6,7 @@
     <artifactId>glmall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>glmall</name>
-    <description>谷粒商城</description>
+    <description>聚合服务</description>
     <packaging>pom</packaging>
 
     <modules>
@@ -15,6 +15,9 @@
         <module>glmall-order</module>
         <module>glmall-product</module>
         <module>glmall-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>glmall-common</module>
     </modules>
 
 </project>
