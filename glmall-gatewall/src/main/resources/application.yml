@@ -19,6 +19,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        - id: coupon_route
+          uri: lb://glmall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
         - id: third_party_route
           uri: lb://glmall-third-party
           predicates:
@@ -47,6 +54,38 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
 
+        - id: glmall_host_route
+          uri: lb://glmall-product
+          predicates:
+            - Host=glmall.com,item.glmall.com
 
+        - id: glmall_search_route
+          uri: lb://glmall-search
+          predicates:
+            - Host=search.glmall.com
 
+        - id: glmall_auth_route
+          uri: lb://glmall-auth-server
+          predicates:
+            - Host=auth.glmall.com
+
+        - id: glmall_cart_route
+          uri: lb://glmall-cart
+          predicates:
+            - Host=cart.glmall.com
+
+        - id: glmall_order_route
+          uri: lb://glmall-order
+          predicates:
+            - Host=order.glmall.com
+
+        - id: glmall_member_route
+          uri: lb://glmall-member
+          predicates:
+            - Host=member.glmall.com
+
+        - id: glmall_seckill_route
+          uri: lb://glmall-seckill
+          predicates:
+            - Host=seckill.glmall.com
 ## 前端项目，/api

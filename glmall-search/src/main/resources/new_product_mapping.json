@@ -1,0 +1,62 @@
+{
+  "glmall_product" : {
+    "mappings" : {
+      "properties" : {
+        "attrs" : {
+          "type" : "nested",
+          "properties" : {
+            "attrId" : {
+              "type" : "long"
+            },
+            "attrName" : {
+              "type" : "keyword"
+            },
+            "attrValue" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "brandId" : {
+          "type" : "long"
+        },
+        "brandImg" : {
+          "type" : "keyword"
+        },
+        "brandName" : {
+          "type" : "keyword"
+        },
+        "catalogId" : {
+          "type" : "long"
+        },
+        "catalogName" : {
+          "type" : "keyword"
+        },
+        "hasStock" : {
+          "type" : "boolean"
+        },
+        "hotScore" : {
+          "type" : "long"
+        },
+        "price" : {
+          "type" : "keyword"
+        },
+        "saleCount" : {
+          "type" : "long"
+        },
+        "skuId" : {
+          "type" : "long"
+        },
+        "skuImage" : {
+          "type" : "keyword"
+        },
+        "skuTitle" : {
+          "type" : "text",
+          "analyzer" : "ik_smart"
+        },
+        "spuId" : {
+          "type" : "long"
+        }
+      }
+    }
+  }
+}

@@ -35,7 +35,8 @@ public class Query<T> {
         long limit = 10;
 
         if(params.get(Constant.PAGE) != null){
-            curPage = Long.parseLong((String)params.get(Constant.PAGE));
+            //TODO 强转改为toString
+            curPage = Long.parseLong(params.get(Constant.PAGE).toString());
         }
         if(params.get(Constant.LIMIT) != null){
             limit = Long.parseLong((String)params.get(Constant.LIMIT));

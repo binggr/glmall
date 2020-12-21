@@ -2,8 +2,9 @@ package com.binggr.glmall.product.service.impl;
 
 import com.binggr.glmall.product.entity.AttrEntity;
 import com.binggr.glmall.product.service.AttrService;
-import com.binggr.glmall.product.vo.AttrGroupRelationVo;
 import com.binggr.glmall.product.vo.AttrGroupWithAttrsVo;
+import com.binggr.glmall.product.vo.SkuItemVo;
+import com.binggr.glmall.product.vo.SpuItemAttrGroupVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,6 +86,15 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
 
         return collect;
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+        //1、查出当前spu对应的所有属性的分组信息对应的值
+        //1)、
+        AttrGroupDao baseMapper = this.getBaseMapper();
+        List<SpuItemAttrGroupVo> vos = baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
+        return vos;
     }
 
 }

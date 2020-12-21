@@ -1,15 +1,25 @@
 package com.binggr.glmall.product;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.binggr.glmall.product.dao.AttrGroupDao;
 import com.binggr.glmall.product.entity.BrandEntity;
+import com.binggr.glmall.product.service.AttrGroupService;
 import com.binggr.glmall.product.service.BrandService;
 import com.binggr.glmall.product.service.CategoryService;
+import com.binggr.glmall.product.service.SkuSaleAttrValueService;
+import com.binggr.glmall.product.vo.SkuItemSaleAttrVo;
+import com.binggr.glmall.product.vo.SkuItemVo;
+import com.binggr.glmall.product.vo.SpuItemAttrGroupVo;
 import jdk.nashorn.internal.ir.BaseNode;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 
 import javax.annotation.Resource;
 import java.io.FileInputStream;
@@ -17,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -30,10 +41,53 @@ import java.util.List;
 class GlmallProductApplicationTests {
 
     @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
     BrandService brandService;
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    RedissonClient redissonClient;
+
+    @Autowired
+    AttrGroupDao attrGroupDao;
+
+    @Autowired
+    SkuSaleAttrValueService skuSaleAttrValueService;
+    @Test
+    void testSkuSaleValue(){
+        List<SkuItemSaleAttrVo> saleAttrsBySpuId = skuSaleAttrValueService.getSaleAttrsBySpuId(10L);
+        System.out.println(saleAttrsBySpuId);
+    }
+
+    @Test
+    void test(){
+        List<SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId = attrGroupDao.getAttrGroupWithAttrsBySpuId(3L, 225L);
+        System.out.println(attrGroupWithAttrsBySpuId);
+
+    }
+
+    @Test
+    void redisson(){
+        System.out.println(redissonClient);
+    }
+
+    @Test
+    void testStringRedisTemplate(){
+        //hello world
+        ValueOperations<String, String> stringStringValueOperations = stringRedisTemplate.opsForValue();
+
+        //保存
+        stringStringValueOperations.set("hello","world"+ UUID.randomUUID().toString());
+
+        //查询
+        String hello = stringStringValueOperations.get("hello");
+        System.out.println(hello);
+
+    }
 
     @Test
     void testFind(){
@@ -59,5 +113,6 @@ class GlmallProductApplicationTests {
         });
         System.out.println("成功！");
     }
+
 
 }

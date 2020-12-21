@@ -9,6 +9,13 @@ spring:
       oss:
         bucket: glmall-binggr
         endpoint: oss-cn-chengdu.aliyuncs.com
+      sms:
+        host: https://feginesms.market.alicloudapi.com
+        path: /codeNotice
+        skin: 1
+        sign: 1
+        appcode: ba9a1ad0812341f18f4d862400034960
+
   application:
     name: glmall-third-party
 

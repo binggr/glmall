@@ -11,6 +11,9 @@
 
     <modules>
         <module>glmall-coupon</module>
+        <module>glmall-gatewall</module>
+        <module>glmall-search</module>
+        <module>glmall-third-party</module>
         <module>glmall-member</module>
         <module>glmall-order</module>
         <module>glmall-product</module>
@@ -18,6 +21,9 @@
         <module>renren-fast</module>
         <module>renren-generator</module>
         <module>glmall-common</module>
+        <module>glmall-auth-server</module>
+        <module>glmall-cart</module>
+        <module>glmall-seckill</module>
     </modules>
 
 </project>

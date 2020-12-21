@@ -3,13 +3,15 @@ package com.binggr.glmall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.binggr.common.exception.BizCodeEnume;
+import com.binggr.glmall.member.exception.PhoneExistException;
+import com.binggr.glmall.member.exception.UsernameExistException;
 import com.binggr.glmall.member.feign.CouponFeignService;
+import com.binggr.glmall.member.vo.MemberLoginVo;
+import com.binggr.glmall.member.vo.MemberRegistVo;
+import com.binggr.glmall.member.vo.SocialUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.binggr.glmall.member.entity.MemberEntity;
 import com.binggr.glmall.member.service.MemberService;
@@ -33,6 +35,41 @@ public class MemberController {
 
     @Autowired
     CouponFeignService couponFeignService;
+
+    @PostMapping("/oauth2/login")
+    public R oauthLogin(@RequestBody SocialUser socialUser) throws Exception {
+        MemberEntity entity = memberService.login(socialUser);
+        if(entity!=null){
+            return R.ok().setData(entity);
+        }else {
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_INVAID_EXIST_EXCEPTION.getCode(),BizCodeEnume.LOGINACCT_PASSWORD_INVAID_EXIST_EXCEPTION.getMsg());
+        }
+
+    }
+
+    @PostMapping("/regist")
+    public R regist(@RequestBody MemberRegistVo memberRegistVo){
+        try{
+            memberService.regist(memberRegistVo);
+        }catch (PhoneExistException e){
+            return R.error(BizCodeEnume.PHONE_EXIST_EXCEPTION.getCode(),BizCodeEnume.PHONE_EXIST_EXCEPTION.getMsg());
+        }catch (UsernameExistException e){
+            return R.error(BizCodeEnume.USER_EXIST_EXCEPTION.getCode(),BizCodeEnume.USER_EXIST_EXCEPTION.getMsg());
+        }
+
+        return R.ok();
+    }
+
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+        MemberEntity entity = memberService.login(vo);
+        if(entity!=null){
+            return R.ok().setData(entity);
+        }else {
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_INVAID_EXIST_EXCEPTION.getCode(),BizCodeEnume.LOGINACCT_PASSWORD_INVAID_EXIST_EXCEPTION.getMsg());
+        }
+
+    }
 
     @RequestMapping("/coupons")
     public R test(){

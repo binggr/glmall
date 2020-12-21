@@ -3,7 +3,9 @@ package com.binggr.glmall.ware.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.binggr.common.utils.PageUtils;
 import com.binggr.glmall.ware.entity.WareInfoEntity;
+import com.binggr.glmall.ware.vo.FareResponseVo;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface WareInfoService extends IService<WareInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    FareResponseVo getFare(Long addrId);
 }
 

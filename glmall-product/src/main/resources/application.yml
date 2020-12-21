@@ -14,6 +14,11 @@ spring:
     name: glmall-product
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.51.10
+    port: 6379
 
 #配置Mybatis-Plus
 #@MapperScan("com.binggr.glmall.product.dao")
@@ -31,4 +36,5 @@ server:
 
 logging:
   level:
-    com.binggr: debug
+    com.binggr.glmall: debug
+

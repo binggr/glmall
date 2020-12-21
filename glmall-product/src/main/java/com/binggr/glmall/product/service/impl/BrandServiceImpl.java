@@ -1,10 +1,15 @@
 package com.binggr.glmall.product.service.impl;
 
 import com.binggr.glmall.product.service.CategoryBrandRelationService;
+import com.binggr.glmall.product.vo.BrandVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -51,6 +56,18 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
             //TODO 更新其他关联
         }
+    }
+
+    @Override
+    public List<BrandVo> getBrandByIds(List<Long> brandIds) {
+        List<BrandEntity> brandId = baseMapper.selectList(new QueryWrapper<BrandEntity>().in("brand_id", brandIds));
+        List<BrandVo> collect = brandId.stream().map(item -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(item.getBrandId());
+            brandVo.setBrandName(item.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
 }

@@ -1,19 +1,42 @@
 package com.binggr.glmall.thirdparty;
 
 import com.aliyun.oss.OSSClient;
+import com.binggr.glmall.thirdparty.component.SmsComponent;
+import com.binggr.glmall.thirdparty.util.HttpUtils;
+import org.apache.http.HttpResponse;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.System.out;
 
 @SpringBootTest
 class GlmallThirdPartyApplicationTests {
 
     @Resource //@Autowired
             OSSClient ossClient;
+
+    @Autowired
+    SmsComponent smsComponent;
+
+    @Test
+    void sendCode(){
+        smsComponent.sendCode("14708285181","666666");
+    }
+
+
+
+
 
     @Test
     void testUpload() throws FileNotFoundException {
@@ -32,6 +55,6 @@ class GlmallThirdPartyApplicationTests {
 
         // 关闭OSSClient。
         ossClient.shutdown();
-        System.out.println("上传成功!");
+        out.println("上传成功!");
     }
 }
